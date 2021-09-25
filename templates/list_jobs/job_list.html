@@ -1,0 +1,9 @@
+<h1>Job List</h1>
+
+{% for job in jobList%}
+{{job.job_role}}
+{{job.job_description}}
+{{job.address}}
+{{job.phone}}
+{{job.owner}}
+{% endfor %}

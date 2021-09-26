@@ -1,3 +1,4 @@
+import django_heroku
 """
 Django settings for jobs project.
 
@@ -133,3 +134,4 @@ AUTH_USER_MODEL = 'list_jobs.CustomUser'
 AUTHENTICATION_BACKENDS = ['list_jobs.backends.AuthBackend'] 
 STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 CRISPY_TEMPLATE_PACK = 'bootstrap4'
+django_heroku.settings(locals())

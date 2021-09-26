@@ -8,6 +8,7 @@ from django.urls import reverse_lazy
 from .forms import LoginForm, RegisterForm,JobForm
 from django.contrib.auth.mixins import LoginRequiredMixin
 from django.contrib.auth import logout
+from django.contrib import messages
 
 class LoginView(View):
     form_class = LoginForm
@@ -33,7 +34,7 @@ class LoginView(View):
 
             return render(request,self.template_name)
             
-
+        messages.error(request, 'Please check your username or email')
         return render(request, self.template_name, {'form': form})
 
 
@@ -59,8 +60,10 @@ class HomeView(LoginRequiredMixin ,View):
             job = form.save(commit=False)
             job.owner = request.user
             job.save()
+            messages.success(request, 'Form submission successful')
             return HttpResponseRedirect('/')
-
+        
+        messages.error(request, 'Errors in forms')
         return render(request, self.template_name, {'form': form})
 
 

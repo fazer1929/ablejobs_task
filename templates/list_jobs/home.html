@@ -14,6 +14,13 @@ Home
   {{ form|crispy }}
   <button type="submit" class='btn btn-primary btn-lg' id="submit">Submit</button>
 </form>
+{% if messages %}
+<div class="messages text-center">
+    {% for message in messages %}
+    <p  {% if message.tags %} class=" text-{{ message.tags }}" {% endif %}> {{ message }} </p>
+    {% endfor %}
+</div>
+{% endif %}
 </div>
 
 

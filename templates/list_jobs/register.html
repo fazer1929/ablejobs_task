@@ -16,6 +16,13 @@ Job List
   {{ form|crispy }}
   <button type="submit" class='btn btn-success btn-lg' id="submit">Register</button>
 </form>
+{% if messages %}
+<div class="messages text-center">
+    {% for message in messages %}
+    <p  {% if message.tags %} class=" text-{{ message.tags }}" {% endif %}> {{ message }} </p>
+    {% endfor %}
+</div>
+{% endif %}
 </div>
 
 {% endblock %}

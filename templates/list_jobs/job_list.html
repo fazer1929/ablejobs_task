@@ -1,9 +1,38 @@
-<h1>Job List</h1>
+{% extends 'base.html' %}
+{% block title%}
+Job List
+{% endblock %}
+
+
+{% block body%}
+<h1 class="text-center mb-4">Job List</h1>
+
+<div class="container">
+<table class="table ">
+  <thead class="thead-dark">
+    <tr>
+      <th scope="col">Job Role</th>
+      <th scope="col">Job Description</th>
+      <th scope="col">Adress</th>
+      <th scope="col">Phone</th>
+      <th scope="col">Added By</th>
+    </tr>
+  </thead>
+  <tbody>
 
 {% for job in jobList%}
-{{job.job_role}}
-{{job.job_description}}
-{{job.address}}
-{{job.phone}}
-{{job.owner}}
+    <tr>
+      <td>{{job.job_role}}</td>
+      <td>{{job.job_description}}</td>
+      <td>{{job.address}}</td>
+      <td>{{job.phone}}</td>
+      <td>{{job.owner}}</td>
+    </tr>
+
 {% endfor %}
+    
+  </tbody>
+</table>
+</div>
+
+{% endblock %}

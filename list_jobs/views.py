@@ -3,9 +3,11 @@ from django.contrib.auth import authenticate,login
 from django.views import generic,View
 from django.shortcuts import render
 from django.http import HttpResponseRedirect
+from django.shortcuts import redirect
 from django.urls import reverse_lazy
 from .forms import LoginForm, RegisterForm,JobForm
 from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import logout
 
 class LoginView(View):
     form_class = LoginForm
@@ -25,9 +27,10 @@ class LoginView(View):
             if user.is_active:
                 login(request, user)
                 if(user.is_staff):
-                    pass
+                    return redirect('joblist')
                 else:
-                    return HttpResponseRedirect('/')
+                    return redirect('home')
+
             return render(request,self.template_name)
             
 
@@ -73,3 +76,8 @@ class JobListView(LoginRequiredMixin ,View):
         else:
             return HttpResponseRedirect('/')
         
+def logoutView(request):
+    if(request.user != None):
+        logout(request)
+    
+    return redirect('login')

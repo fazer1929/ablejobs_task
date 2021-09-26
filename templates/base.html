@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title%}{% endblock %}</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/css/bootstrap.min.css" integrity="sha384-B0vP5xmATw1+K9KRQjQERJvTumQW0nPEzvF6L/Z6nronJ3oUOFUFpCjEUQouq2+l" crossorigin="anonymous">
+  </head>
+  <body>
+  <nav class="navbar navbar-expand-lg navbar-dark bg-dark">
+
+  <a class="navbar-brand" href="#">Ablejobs Task</a>
+  <ul class="navbar-nav mr-auto">
+   
+    {% if request.user.is_staff %}
+
+      <li class="nav-item">
+        <a class="nav-link" href=" {% url 'home' %}">Add Jobs </a>
+      </li>
+      <li class="nav-item">
+        <a class="nav-link" href=" {% url 'joblist' %}">See JobList </a>
+      </li>
+      {% endif %}
+    </ul>
+
+
+<ul class="nav navbar-nav navbar-right">
+    {% if user.is_authenticated %}
+
+      <a href=" {% url 'logout' %} "><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Logout</button><a/>
+    {% else %}
+      <a class="mr-4" href=" {% url 'login' %} "><button class="btn btn-outline-success my-2 my-sm-0" type="submit">Login</button><a/>
+      <a class="mr-4" href=" {% url 'register' %} "><button class="btn btn-outline-primary my-2 my-sm-0" type="submit">Register</button><a/>
+{% endif %}
+
+    </ul>
+</nav>
+    <div style="margin-top:50px"></div>
+    {% block body%}{% endblock %}
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.0/dist/js/bootstrap.bundle.min.js" integrity="sha384-Piv4xVNRyMGpqkS2by6br4gNJ7DXjqk09RmUpJ8jgGtD7zP9yug3goQfGII0yAns" crossorigin="anonymous"></script>
+  </body>
+</html>

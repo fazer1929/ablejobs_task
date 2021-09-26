@@ -1,7 +1,21 @@
-<h1>Register</h1>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+
+{% block title%}
+Job List
+{% endblock %}
+
+
+{% block body%}
+<h1 class="text-center mb-4">Register</h1>
+
+<div class="container">
 
 <form action="{% url 'register' %}" method="post">
   {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" id="submit">Register</button>
+  {{ form|crispy }}
+  <button type="submit" class='btn btn-success btn-lg' id="submit">Register</button>
 </form>
+</div>
+
+{% endblock %}

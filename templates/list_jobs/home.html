@@ -1,7 +1,20 @@
-<h1>Login</h1>
+{% extends 'base.html' %}
+{% load crispy_forms_tags %}
+{% block title%}
+Home
+{% endblock %}
 
+
+{% block body%}
+
+<h1 class="text-center mb-4">Add Job</h1>
+<div class="container">
 <form action="{% url 'home' %}" method="post">
   {% csrf_token %}
-  {{ form.as_p }}
-  <button type="submit" id="submit">Submit</button>
+  {{ form|crispy }}
+  <button type="submit" class='btn btn-primary btn-lg' id="submit">Submit</button>
 </form>
+</div>
+
+
+{% endblock %}
